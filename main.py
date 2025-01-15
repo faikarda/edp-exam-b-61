@@ -3,9 +3,6 @@ class Event:
         self.name = name
         self.payload = payload 
 
-class Store:
-    def __init__(self, inventory):
-        self.inventory = inventory
 
 class OrderSubmittedEvent(Event):
      def __init__(self, customer_name, product_name):
