@@ -59,3 +59,15 @@ if __name__ == "__main__":
     store_inventory = {"Laptop": 10, "Monitor": 5, "Keyboard": 20}
     store = Store("TechStore", store_inventory, event_queue)
     customer = Customer("Piotr Brudny", event_queue)
+
+    customer.place_order("Laptop")
+    customer.place_order("Mouse")
+    customer.place_order("Monitor")
+
+while event_queue:
+        event = event_queue.pop(0)
+
+        if isinstance(event, OrderSubmittedEvent):
+            store.handle_order(event)
+        elif isinstance(event, (OrderConfirmedEvent, OrderRejectedEvent)):
+            customer.handle_order_response(event)
