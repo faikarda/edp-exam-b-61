@@ -52,3 +52,10 @@ class Customer:
             print(f"Great! {self.name} received confirmation for {event.payload['product_name']}")
         elif event.name == "order_rejected":
             print(f"Oh no! {self.name}'s order for {event.payload['product_name']} was rejected: {event.payload['reason']}")
+
+if __name__ == "__main__":
+    event_queue = []
+
+    store_inventory = {"Laptop": 10, "Monitor": 5, "Keyboard": 20}
+    store = Store("TechStore", store_inventory, event_queue)
+    customer = Customer("Piotr Brudny", event_queue)
